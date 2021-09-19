@@ -1,9 +1,20 @@
-## About Jekyll Archives
+## About Jekyll Archives Dir-Category
 
-Automatically generate post archives by dates, tags, and categories.
+This plugin is based on [Jekyll Archives](https://github.com/jekyll/jekyll-archives)
+Added directory category function:
+generate category information acrodding the directory structure
+**the `category`/`categories` tags set in the markdown file will be ignored**
 
-[![Gem Version](https://badge.fury.io/rb/jekyll-archives-dir-category.svg)](http://badge.fury.io/rb/jekyll-archives-dir-category)
-[![Build Status](https://travis-ci.org/jekyll/jekyll-archives-dir-category.svg?branch=master)](https://travis-ci.org/jekyll/jekyll-archives-dir-category)
+## Example
+
+Usage is same as `Jekyll Archives` except the category things:
+
+* path: `_posts/linux/2018-02-02-example1.md`
+    this post will have category: `linux`
+* path: `_posts/linux/shell/2018-02-02-example2.md`
+    this post will have category: `linux/shell`
+* path: `_posts/linux/shell/bash/2018-02-02-example3.md`
+    this post will have category: `linux/shell/bash`
 
 ## Getting started
 
