@@ -12,7 +12,7 @@
 
 ### Bug Fixes
 
-  * Return unless &#39;jekyll-archives&#39; config is a Hash (#139)
+  * Return unless &#39;jekyll-archives-dir-category&#39; config is a Hash (#139)
 
 ### Documentation
 

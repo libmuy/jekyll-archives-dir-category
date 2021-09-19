@@ -3,11 +3,11 @@
 require "helper"
 
 class TestJekyllArchives < Minitest::Test
-  context "the jekyll-archives plugin" do
+  context "the jekyll-archives-dir-category plugin" do
     setup do
-      @site = fixture_site("jekyll-archives" => {
-        "enabled" => true,
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "enabled" => true,
+                           })
       @site.read
       @archives = Jekyll::Archives::Archives.new(@site.config)
     end
@@ -48,14 +48,14 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with a custom slug mode" do
+  context "the jekyll-archives-dir-category plugin with a custom slug mode" do
     setup do
       # slug mode other than those expected by Jekyll returns the given string after
       # downcasing it.
-      @site = fixture_site("jekyll-archives" => {
-        "slug_mode" => "raw",
-        "enabled"   => true,
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "slug_mode" => "raw",
+                             "enabled" => true,
+                           })
       @site.read
       @archives = Jekyll::Archives::Archives.new(@site.config)
     end
@@ -66,12 +66,12 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with custom layout path" do
+  context "the jekyll-archives-dir-category plugin with custom layout path" do
     setup do
-      @site = fixture_site("jekyll-archives" => {
-        "layout"  => "archive-too",
-        "enabled" => true,
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "layout" => "archive-too",
+                             "enabled" => true,
+                           })
       @site.process
     end
 
@@ -81,15 +81,15 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with type-specific layout" do
+  context "the jekyll-archives-dir-category plugin with type-specific layout" do
     setup do
       @site = fixture_site(
-        "jekyll-archives" => {
+        "jekyll-archives-dir-category" => {
           "enabled" => true,
           "layouts" => {
             "year" => "archive-too",
           },
-        }
+        },
       )
       @site.process
     end
@@ -101,17 +101,17 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with custom permalinks" do
+  context "the jekyll-archives-dir-category plugin with custom permalinks" do
     setup do
       @site = fixture_site(
-        "jekyll-archives" => {
-          "enabled"    => true,
+        "jekyll-archives-dir-category" => {
+          "enabled" => true,
           "permalinks" => {
-            "year"     => "/year/:year/",
-            "tag"      => "/tag-:name.html",
+            "year" => "/year/:year/",
+            "tag" => "/tag-:name.html",
             "category" => "/category-:name.html",
           },
-        }
+        },
       )
       @site.process
     end
@@ -127,9 +127,9 @@ class TestJekyllArchives < Minitest::Test
 
   context "the archives" do
     setup do
-      @site = fixture_site("jekyll-archives" => {
-        "enabled" => true,
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "enabled" => true,
+                           })
       @site.process
     end
 
@@ -138,7 +138,7 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with default config" do
+  context "the jekyll-archives-dir-category plugin with default config" do
     setup do
       @site = fixture_site
       @site.process
@@ -149,11 +149,11 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with enabled array" do
+  context "the jekyll-archives-dir-category plugin with enabled array" do
     setup do
-      @site = fixture_site("jekyll-archives" => {
-        "enabled" => ["tags"],
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "enabled" => ["tags"],
+                           })
       @site.process
     end
 
@@ -171,11 +171,11 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin" do
+  context "the jekyll-archives-dir-category plugin" do
     setup do
-      @site = fixture_site("jekyll-archives" => {
-        "enabled" => true,
-      })
+      @site = fixture_site("jekyll-archives-dir-category" => {
+                             "enabled" => true,
+                           })
       @site.process
       @archives = @site.config["archives"]
       @tag_archive = @archives.detect { |a| a.type == "tag" }
@@ -208,10 +208,10 @@ class TestJekyllArchives < Minitest::Test
     end
   end
 
-  context "the jekyll-archives plugin with a non-hash config" do
+  context "the jekyll-archives-dir-category plugin with a non-hash config" do
     should "output a warning" do
       output = capture_output do
-        site = fixture_site("jekyll-archives" => %w(apples oranges))
+        site = fixture_site("jekyll-archives-dir-category" => %w(apples oranges))
         site.read
         site.generate
       end
@@ -219,7 +219,7 @@ class TestJekyllArchives < Minitest::Test
       assert_includes output, "Archives will not be generated for this site."
 
       output = capture_output do
-        site = fixture_site("jekyll-archives" => nil)
+        site = fixture_site("jekyll-archives-dir-category" => nil)
         site.read
         site.generate
       end
@@ -229,7 +229,7 @@ class TestJekyllArchives < Minitest::Test
 
     should "not generate archive pages" do
       capture_output do
-        site = fixture_site("jekyll-archives" => nil)
+        site = fixture_site("jekyll-archives-dir-category" => nil)
         site.read
         site.generate
         assert_nil(site.pages.find { |p| p.is_a?(Jekyll::Archives::Archive) })

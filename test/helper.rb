@@ -10,11 +10,11 @@ require "shoulda"
 $LOAD_PATH.unshift(File.join(__dir__, "..", "lib"))
 $LOAD_PATH.unshift(__dir__)
 
-require "jekyll-archives"
+require "jekyll-archives-dir-category"
 
-TEST_DIR     = __dir__
-SOURCE_DIR   = File.expand_path("source", TEST_DIR)
-DEST_DIR     = File.expand_path("destination", TEST_DIR)
+TEST_DIR = __dir__
+SOURCE_DIR = File.expand_path("source", TEST_DIR)
+DEST_DIR = File.expand_path("destination", TEST_DIR)
 
 module Minitest
   class Test
@@ -23,8 +23,8 @@ module Minitest
         Jekyll::Utils.deep_merge_hashes(
           Jekyll::Utils.deep_merge_hashes(
             Jekyll::Configuration::DEFAULTS,
-            "source"      => SOURCE_DIR,
-            "destination" => DEST_DIR
+            "source" => SOURCE_DIR,
+            "destination" => DEST_DIR,
           ),
           config
         )

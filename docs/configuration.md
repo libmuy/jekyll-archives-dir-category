@@ -1,11 +1,11 @@
 ## Configuration
 
-Archives configuration is done in the site's `_config.yml` file, under the `jekyll-archives` key.
+Archives configuration is done in the site's `_config.yml` file, under the `jekyll-archives-dir-category` key.
 
 ### Default configuration
 
 ```yml
-jekyll-archives:
+jekyll-archives-dir-category:
   enabled: []
   layout: archive
   permalinks:

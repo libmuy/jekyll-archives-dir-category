@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "lib/jekyll-archives/version"
+require_relative "lib/jekyll-archives-dir-category/version"
 
 Gem::Specification.new do |s|
-  s.name        = "jekyll-archives"
+  s.name        = "jekyll-archives-dir-category"
   s.summary     = "Post archives for Jekyll."
   s.description = "Automatically generate post archives by dates, tags, and categories."
   s.version     = Jekyll::Archives::VERSION
   s.authors     = ["Alfred Xing"]
 
-  s.homepage    = "https://github.com/jekyll/jekyll-archives"
+  s.homepage    = "https://github.com/bijianing/jekyll-archives-dir-category"
   s.licenses    = ["MIT"]
 
   all_files     = `git ls-files -z`.split("\x0")

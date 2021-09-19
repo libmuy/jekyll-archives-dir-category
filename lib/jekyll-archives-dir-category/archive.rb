@@ -25,18 +25,23 @@ module Jekyll
       # type  - The type of archive. Can be one of "year", "month", "day", "category", or "tag"
       # posts - The array of posts that belong in this archive.
       def initialize(site, title, type, posts)
-        @site   = site
-        @posts  = posts
-        @type   = type
-        @title  = title
-        @config = site.config["jekyll-archives"]
-        @slug   = slugify_string_title
+        @site = site
+        @posts = posts
+        @type = type
+        @title = title
+        @config = site.config["jekyll-archives-dir-category"]
+        @slug = slugify_string_title
 
         # Use ".html" for file extension and url for path
-        @ext  = File.extname(relative_path)
+        @ext = File.extname(relative_path)
         @path = relative_path
         @name = File.basename(relative_path, @ext)
 
+        # printf("slug:%s\n", @slug)
+        # printf("template:%s\n", template)
+        # printf("url_placeholder:%s\n", url_placeholders)
+        # printf("url:%s\n", url)
+        # printf("path:%s\n", relative_path)
         @data = {
           "layout" => layout,
         }
@@ -72,9 +77,9 @@ module Jekyll
       # Returns the String url.
       def url
         @url ||= URL.new(
-          :template     => template,
+          :template => template,
           :placeholders => url_placeholders,
-          :permalink    => nil
+          :permalink => nil,
         ).to_s
       rescue ArgumentError
         raise ArgumentError, "Template \"#{template}\" provided is invalid."
@@ -99,9 +104,9 @@ module Jekyll
         return unless @title.is_a?(Hash)
 
         @date ||= begin
-          args = @title.values.map(&:to_i)
-          Date.new(*args)
-        end
+            args = @title.values.map(&:to_i)
+            Date.new(*args)
+          end
       end
 
       # Obtain the write path relative to the destination directory
@@ -109,10 +114,10 @@ module Jekyll
       # Returns the destination relative path String.
       def relative_path
         @relative_path ||= begin
-          path = URL.unescape_path(url).gsub(%r!^/!, "")
-          path = File.join(path, "index.html") if url.end_with?("/")
-          path
-        end
+            path = URL.unescape_path(url).gsub(%r!^/!, "")
+            path = File.join(path, "index.html") if url.end_with?("/")
+            path
+          end
       end
 
       # Returns the object as a debug String.
@@ -129,7 +134,7 @@ module Jekyll
       def slugify_string_title
         return unless title.is_a?(String)
 
-        Utils.slugify(title, :mode => @config["slug_mode"])
+        title
       end
     end
   end

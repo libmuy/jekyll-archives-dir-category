@@ -10,12 +10,12 @@ AllCops:
 
 Lint/ShadowingOuterLocalVariable:
   Exclude:
-    - lib/jekyll-archives.rb
+    - lib/jekyll-archives-dir-category.rb
 
 # Remove once Jekyll core has dropped explicit support for Ruby 2.2
 Lint/SafeNavigationConsistency:
   Exclude:
-    - lib/jekyll-archives/archive.rb
+    - lib/jekyll-archives-dir-category/archive.rb
 
 Metrics/BlockLength:
   Exclude:
@@ -23,6 +23,6 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Exclude:
-    - lib/jekyll-archives.rb
-    - lib/jekyll-archives/archive.rb
+    - lib/jekyll-archives-dir-category.rb
+    - lib/jekyll-archives-dir-category/archive.rb
     - test/**/*.rb
