@@ -1,4 +1,8 @@
 
+## 0.1.3 / 2021-10-13
+
+  * change post's attribute name `category-name`/`update-time` to `category_name`/`update_time`
+
 ## 0.1.2 / 2021-09-22
 
   * add `update-time` to post (use git commit date)

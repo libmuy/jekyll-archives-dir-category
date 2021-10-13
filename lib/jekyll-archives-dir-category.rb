@@ -91,13 +91,13 @@ module Jekyll
           cn = get_category_name(path)
           p.data["category"] = c
           p.data["categories"] = [c]
-          p.data["category-name"] = cn
+          p.data["category_name"] = cn
           io = IO.popen('git log -1 --pretty="format:%cI" ' + p.path)
           date_str = io.gets
           #   printf("post:%s\n", p.path)
           #   printf("    pwd :%s", `pwd`)
           #   printf("    date:%s\n\n", date_str)
-          p.data["update-time"] = date_str
+          p.data["update_time"] = date_str
           #   printf("Post date:%s\n", `git log -1 --pretty="format:%cI" $p`)
           #   printf("     category:%s\n", c)
           #   printf("     category name:%s\n\n", cn)
