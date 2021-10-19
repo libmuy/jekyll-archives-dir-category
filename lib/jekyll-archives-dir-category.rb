@@ -109,7 +109,7 @@ module Jekyll
           category_info << c
         end
         site.data["category-info"] = category_info
-        print category_info.inspect
+        # print category_info.inspect
       end
 
       # the category info from '_category.yml' file
@@ -253,8 +253,8 @@ module Jekyll
         end
 
         @site.data["date-info"] = dates_info_years.sort{|a, b| b["year"] <=> a["year"]}
-        print "\n=================================\n"
-        print @site.data["date-info"].inspect
+        # print "\n=================================\n"
+        # print @site.data["date-info"].inspect
       end
 
       # Checks if archive type is enabled in config

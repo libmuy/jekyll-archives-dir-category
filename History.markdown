@@ -1,4 +1,4 @@
-## 0.1.5 / 2021-10-20
+## 0.1.6 / 2021-10-20
 
 * change site data name from `years` to `date-info`
 * `date-info` structure:
