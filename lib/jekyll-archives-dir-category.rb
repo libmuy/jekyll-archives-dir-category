@@ -224,15 +224,29 @@ module Jekyll
       end
 
       def read_dates
+        dates_info_years = []
         years.each do |year, y_posts|
           append_enabled_date_type({ :year => year }, "year", y_posts)
+          dates_info_months = []
           months(y_posts).each do |month, m_posts|
             append_enabled_date_type({ :year => year, :month => month }, "month", m_posts)
+            dates_info_days = []
             days(m_posts).each do |day, d_posts|
               append_enabled_date_type({ :year => year, :month => month, :day => day }, "day", d_posts)
+              dates_info_days << "%02d" % day.to_i
             end
+            dates_info_months << {
+              "month" => "%02d" % month.to_i,
+              "days" => dates_info_days.sort{|a, b| b <=> a},
+            }
           end
+          dates_info_years << {
+            "year" => "%04d" % year.to_i,
+            "months" => dates_info_months.sort{|a, b| b["month"] <=> a["month"]}
+          }
         end
+
+        @site.data["years"] = dates_info_years.sort{|a, b| b["year"] <=> a["year"]}
       end
 
       # Checks if archive type is enabled in config
