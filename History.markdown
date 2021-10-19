@@ -1,3 +1,53 @@
+## 0.1.5 / 2021-10-20
+
+* change site data name from `years` to `date-info`
+* `date-info` structure:
+    ```ruby
+    [
+        {
+            "year"=>"2021",
+            "months"=>[
+                {
+                    "month"=>"10",
+                    "days"=>[
+                        {
+                            "day"=>"15",
+                            "post_count"=>1
+                        },
+                        {
+                            "day"=>"14",
+                            "post_count"=>1
+                        },
+                        {
+                            "day"=>"11",
+                            "post_count"=>1
+                        },
+                        {
+                            "day"=>"07",
+                            "post_count"=>4
+                        },
+                        {
+                            "day"=>"05",
+                            "post_count"=>2
+                        }
+                    ],
+                    "post_count"=>9
+                },
+                {
+                    "month"=>"09",
+                    "days"=>[
+                        {
+                            "day"=>"26",
+                            "post_count"=>1
+                        }
+                    ],
+                    "post_count"=>1
+                }
+            ],
+            "post_count"=>10
+        },
+        ...
+    ```
 
 ## 0.1.4 / 2021-10-19
 

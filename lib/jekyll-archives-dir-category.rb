@@ -109,6 +109,7 @@ module Jekyll
           category_info << c
         end
         site.data["category-info"] = category_info
+        print category_info.inspect
       end
 
       # the category info from '_category.yml' file
@@ -133,9 +134,9 @@ module Jekyll
           info["priority"] = category_info["priority"] if !category_info["priority"].nil?
         end
         if info["href"].nil?
-          info["count"] = 0
+          info["post_count"] = 0
         else
-          info["count"] = @posts.docs.count { |a|
+          info["post_count"] = @posts.docs.count { |a|
             a.data["category"].start_with? info["href"]
           }
         end
@@ -233,20 +234,27 @@ module Jekyll
             dates_info_days = []
             days(m_posts).each do |day, d_posts|
               append_enabled_date_type({ :year => year, :month => month, :day => day }, "day", d_posts)
-              dates_info_days << "%02d" % day.to_i
+              dates_info_days << {
+                  "day" => "%02d" % day.to_i,
+                  "post_count" => @posts.docs.count {|p| p.date.year == year.to_i && p.date.month == month.to_i && p.date.day == day.to_i },
+              }
             end
             dates_info_months << {
               "month" => "%02d" % month.to_i,
-              "days" => dates_info_days.sort{|a, b| b <=> a},
+              "days" => dates_info_days.sort{|a, b| b["day"] <=> a["day"]},
+              "post_count" => @posts.docs.count {|p| p.date.year == year.to_i && p.date.month == month.to_i },
             }
           end
           dates_info_years << {
             "year" => "%04d" % year.to_i,
-            "months" => dates_info_months.sort{|a, b| b["month"] <=> a["month"]}
-          }
+            "months" => dates_info_months.sort{|a, b| b["month"] <=> a["month"]},
+            "post_count" => @posts.docs.count {|p| p.date.year == year.to_i },
+        }
         end
 
-        @site.data["years"] = dates_info_years.sort{|a, b| b["year"] <=> a["year"]}
+        @site.data["date-info"] = dates_info_years.sort{|a, b| b["year"] <=> a["year"]}
+        print "\n=================================\n"
+        print @site.data["date-info"].inspect
       end
 
       # Checks if archive type is enabled in config
